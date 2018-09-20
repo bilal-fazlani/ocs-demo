@@ -1,0 +1,8 @@
+#! /bin/bash -x
+
+rm -rf sequencer-scripts
+git clone git@github.com:tmtsoftware/sequencer-scripts.git
+
+# make change to a file and commit
+# push to github
+# monitor logs of gitbucket to ensure mirroring

@@ -1,0 +1,7 @@
+cd ~/Projects/tmt/esw-prototype
+sbt
+ocs-react4s-app/fastOptJS::startWebpackDevServer
+
+
+open localhost:8080
+use the payloads from https://github.com/tmtsoftware/esw-prototype/blob/master/RestCollection/sequencer_assembly_endpoints.http

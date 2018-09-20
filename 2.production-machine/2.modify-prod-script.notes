@@ -1,0 +1,5 @@
+cd sequencer-scripts/
+
+// make changes
+// commit
+// push to github using `git push github deploy`

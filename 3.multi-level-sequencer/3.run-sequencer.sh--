@@ -1,0 +1,37 @@
+#! /bin/bash -x
+
+ip=`ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2`
+addr=$ip:5552
+export clusterSeeds=$addr
+
+cd ~/Projects/tmt/sequencer-scripts/
+git pull --rebase
+#sbt universal:stage
+
+#running sequencer
+./target/universal/stage/bin/sequencer-scripts $1 $2 $3
+
+#run these sequencers in order
+#`./3.run-sequencer.sh tcs darknight 7000`
+#`./3.run-sequencer.sh iris darknight 8000`
+#`./3.run-sequencer.sh ocs darknight 9000`
+
+#connect to ocs usin repl ssh
+#`ssh repl@localhost -p9000`
+# and feed a command list
+
+# sequenceFeeder.submit(
+#   CommandList(
+#   Seq(
+#     Setup(Prefix("test1"),
+#           CommandName("setup-iris"),
+#           Some(ObsId("test-obsId1"))),
+#     Setup(Prefix("test1"),
+#           CommandName("setup-iris"),
+#           Some(ObsId("test-obsId1"))),
+#     Setup(Prefix("test1"),
+#           CommandName("setup-iris"),
+#           Some(ObsId("test-obsId1")))
+#           )
+#   )
+# )
