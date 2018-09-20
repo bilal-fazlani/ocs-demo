@@ -2,10 +2,10 @@
 
 download_new_file() {
     if [ -e $1 ]; then
-        echo 'File already exists' >&2
+        echo 'gitbucket.war already exists... skipped download' >&2
     else
         echo "downloading $1 from $2"
-        curl -o $1 $2
+        curl -o $1 $2 -# -L
     fi
 }
 
@@ -13,7 +13,7 @@ rm -rf ~/.gitbucket/
 mkdir -p ~/.gitbucket/plugins
 cp ./downloaded_bins/gitbucket-mirroring-plugin_2.12-1.0.0-SNAPSHOT.jar ~/.gitbucket/plugins/
 
-download_new_file gitbucket.war "https://github-production-release-asset-2e65be.s3.amazonaws.com/9350746/60fe9cb6-3c68-11e8-96da-0ab5459bb8a2?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20180920%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20180920T111620Z&X-Amz-Expires=300&X-Amz-Signature=01dc149dcef2c6ff5cdcbf2c9c9389982991c48e87ad180cccd267dae4a4b6c5&X-Amz-SignedHeaders=host&actor_id=3396271&response-content-disposition=attachment%3B%20filename%3Dgitbucket.war&response-content-type=application%2Foctet-stream"
+download_new_file gitbucket.war "https://github.com/gitbucket/gitbucket/releases/download/4.23.1/gitbucket.war"
 java -jar gitbucket.war --port=4000
 
 # setup mirroring with github
